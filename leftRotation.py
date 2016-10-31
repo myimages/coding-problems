@@ -8,6 +8,7 @@ def processFile(filename):
         d = int(d)
         # Convert the space separated string of numbers
         # into a list of integers
+        # Note: It assumes this is on a single line. Might be a poor assumption.
         arr = f.readline().split(" ")
         i = 0
         for num in arr:
@@ -18,8 +19,17 @@ def processFile(filename):
 
 def leftRotation (arr, d):
     # Perform d left rotations on array
-    print("")
+    newArr = [None] * len(arr)
+    i = 0
+    while i < len(arr):
+        # This works because -i indexing means something in Python
+        # Would not work in most languages.......
+        # Probably won't work if d > len(arr)
+        # I should test that
+        newArr[i - d] = arr [i]
+        i += 1
+    print(arr)
+    print(newArr)
 
 d, arr = processFile("leftRotation.txt")
-print(d)
-print(arr)
+newArr = leftRotation(arr, d)
