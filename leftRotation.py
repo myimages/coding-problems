@@ -21,11 +21,11 @@ def leftRotation (arr, d):
     # Perform d left rotations on array
     newArr = [None] * len(arr)
     i = 0
+    while d > len(arr):
+        d -= len(arr)
     while i < len(arr):
         # This works because -i indexing means something in Python
         # Would not work in most languages.......
-        # Probably won't work if d > len(arr)
-        # I should test that
         newArr[i - d] = arr [i]
         i += 1
     print(arr)
