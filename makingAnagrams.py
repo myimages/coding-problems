@@ -8,6 +8,20 @@ def letterFrequency(s):
     Returns
     dictS: Dictionary which records all of the letters contained in s, with their frequencies of occurrences in a case-insensitive manner
     """
+    s = s.lower()
+    uniqueS = set()
+    dictS = {}
+    # Make a set of the characters in the string with duplicates removed
+    # So that we can iterate through the set and count the frequencies of each character, without redoing the count
+    for c in s:
+        uniqueS.add(c)
+    # dictS contains the character frequencies
+    for c in uniqueS:
+        count = s.count(c)
+        dictS[c] = count
+    return(dictS)
+
+
 
 def makingAnagrams (a, b):
     """
@@ -22,4 +36,8 @@ def makingAnagrams (a, b):
     """
 
     dictA = letterFrequency(a)
+    print(dictA)
     dictB = letterFrequency(b)
+    print(dictB)
+
+makingAnagrams("abbc", "cde")
