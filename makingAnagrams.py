@@ -35,9 +35,30 @@ def makingAnagrams (a, b):
     n: Integer, The number of characters you must delete to make the two strings anagrams of each other
     """
 
+    # Returns a dictionary which records the letter frequency of the string
     dictA = letterFrequency(a)
-    print(dictA)
     dictB = letterFrequency(b)
-    print(dictB)
+    keysA = set(dictA.keys())
+    keysB = set(dictB.keys())
+    # Letters in A but not in B
+    aKeysOnly = keysA - keysB
+    # Letters in B but not in A
+    bKeysOnly = keysB - keysA
+    # Letters in both a and b
+    bothKeys = keysA & keysB
 
-makingAnagrams("abbc", "cde")
+    minForAnagram = 0
+    # If the letter only appears in a or b, then it has to be removed for them to be anagrams.
+    for aKey in aKeysOnly:
+        minForAnagram += dictA[aKey]
+    for bKey in bKeysOnly:
+        minForAnagram += dictB[bKey]
+
+    # If the letter appears in both a and b, it must appear the same number of times in both
+    # If it doesn't, then it must be removed from the string it appears most in, until the strings share an equal frequency
+    for abKey in bothKeys:
+        if (dictA[abKey] != dictB[abKey]):
+            minForAnagram += max(dictA[abKey], dictB[abKey]) - min(dictA[abKey], dictB[abKey])
+    return(minForAnagram)
+
+print(makingAnagrams("cde", "abc"))
