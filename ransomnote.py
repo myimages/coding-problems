@@ -29,6 +29,12 @@ class hash_table:
             self.table[hash_index] = l
         else:
             self.table[hash_index].append(word)
+
+    def add_sentence(self, sentence):
+        words = sentence.split(" ")
+        for word in words:
+            self.add_word(word)
+
     def search_for_word(self, word):
         hash_index = self.key_to_index(word, len(self.table))
 
@@ -40,6 +46,14 @@ class hash_table:
                     return True
             return False
 
+    def search_for_sentence(self, sentence):
+        words = sentence.split(" ")
+        for word in words:
+            isThere = self.search_for_word(word)
+            if isThere == False:
+                return "No"
+        return "Yes"
+
     def print_table(self):
         print(self.table)
 
@@ -48,14 +62,8 @@ class hash_table:
 
 #def ransom_note(magazine, ransom):
 
+
 h_table = hash_table()
-h_table.add_word("give")
-h_table.add_word("me")
-h_table.add_word("one")
-h_table.add_word("grand")
-h_table.add_word("today")
-h_table.add_word("tonight")
-print(h_table.search_for_word("give"))
-print(h_table.search_for_word("one"))
-print(h_table.search_for_word("grand"))
-print(h_table.search_for_word("lawl"))
+h_table.add_sentence("give me one grand today tonight")
+print(h_table.search_for_sentence("give one grand"))
+print(h_table.search_for_sentence("lawl give"))
