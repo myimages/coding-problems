@@ -43,6 +43,12 @@ class hash_table:
         else:
             for item in self.table[hash_index]:
                 if word == item:
+                    # Remove item from hash table
+                    # This is because once we use a word for our ransom note, we can't use it again.
+                    if len(self.table[hash_index]) == 1:
+                        self.table[hash_index] = None
+                    else:
+                        self.table[hash_index].remove(item)
                     return True
             return False
 
@@ -51,8 +57,8 @@ class hash_table:
         for word in words:
             isThere = self.search_for_word(word)
             if isThere == False:
-                return "No"
-        return "Yes"
+                return False
+        return True
 
     def print_table(self):
         print(self.table)
@@ -60,10 +66,13 @@ class hash_table:
     def __init__(self):
         self.table = [None] * 1009
 
-#def ransom_note(magazine, ransom):
+def ransom_note(magazine, ransom):
+    h_table = hash_table()
+    h_table.add_sentence(magazine)
+    return(h_table.search_for_sentence(ransom))
 
-
-h_table = hash_table()
-h_table.add_sentence("give me one grand today tonight")
-print(h_table.search_for_sentence("give one grand"))
-print(h_table.search_for_sentence("lawl give"))
+answer = ransom_note("o l x imjaw bee khmla v o v o imjaw l khmla imjaw x", "imjaw l khmla x imjaw o l l o khmla v bee o o imjaw imjaw o")
+if (answer):
+    print("Yes")
+else:
+    print("No")
