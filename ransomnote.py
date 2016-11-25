@@ -47,6 +47,8 @@ class hash_table:
     def add_sentence(self, sentence):
         """
         Takes a sentence either in the form of a list or string and ensures each word (separated by spaces) is added to the hash table.
+        PARAMETERS
+        sentence: String, alphanumeric, words spaced out with " " OR list with 1 word in each cell.
         """
         if (type(sentence) is str):
             words = sentence.split(" ")
@@ -56,7 +58,18 @@ class hash_table:
             self.add_word(word)
 
     def search_for_word(self, word):
+        """
+        Searches if a word is in the hash map. If so, removes the word from the hash map.
+        PARAMETERS
+        word: String, alphanumeric, no " "
+        RETURNS
+        True: If word is contained in the hash map, then removes the word from the hash map
+        FALSE: If word is not contained in the hash map
+        """
         hash_index = self.key_to_index(word, len(self.table))
+        # hash_index contains the key to which the word would be located if it did exist
+        # If it doesn't, the array at that location will be set to None
+        assert hash_index <= len(self.table)
 
         if self.table[hash_index] is None:
             return False
@@ -65,6 +78,7 @@ class hash_table:
                 if word == item:
                     # Remove item from hash table
                     # This is because once we use a word for our ransom note, we can't use it again.
+                    # I tested to make sure that if there are duplicates of a string in a list .remove will only remove a single version of the item
                     if len(self.table[hash_index]) == 1:
                         self.table[hash_index] = None
                     else:
@@ -73,18 +87,38 @@ class hash_table:
             return False
 
     def search_for_sentence(self, sentence):
-        words = sentence.split(" ")
-        for word in words:
-            isThere = self.search_for_word(word)
-            if isThere == False:
-                return False
-        return True
+        """
+        Takes a sentence and checks whether each word in that sentence is located in the hash map
+        PARAMETERS
+        sentence: Either a String with the words spaced by " " or a list with one word per cell
+        RETURNS
+        True: If each word in the sentence is located in the hash map. If there are two copies of the word in the sentence, there must be two copies in the hash map.
+        False: If there is at least one word in the sentence which isn't located in the hash map.
+        """
+        if (type(sentence) is str):
+            words = sentence.split(" ")
+        else:
+            words = sentence
+            for word in words:
+                isThere = self.search_for_word(word)
+                if isThere == False:
+                    return False
+            return True
 
     def print_table(self):
         print(self.table)
 
 
 def ransom_note(magazine, ransom):
+    """"
+    Assesses if we can take a subset of the words in magazine in order to build ransom. Uses a hash map to accomplish this.
+    PARAMETERS
+    magazine: A string of words separated by " "  or a list where each cell contains one word. We use the words in magazine to build the string ransom.
+    ransom: A string words separated by " " or a list where each cell contains one word
+    RETURNS
+    True: If each word in ransom appears exactly once in magazine.
+    False: If there's at least one word in ransom which does not appear in magazine.
+    """
     h_table = hash_table()
     h_table.add_sentence(magazine)
     return(h_table.search_for_sentence(ransom))
