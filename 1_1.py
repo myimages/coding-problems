@@ -7,7 +7,9 @@ def hex_to_bin(HexStr):
     return base64.b16decode(HexStr, casefold = True)
 
 def bin_to_64(BinaryLit):
-
+    """
+    Converts a binary literal into a base64 string.
+    """
     return base64.b64encode(BinaryLit).decode('ascii')
 
 
