@@ -28,12 +28,12 @@ def bin_to_64(BinaryLit):
 
     # Base Case - Binary Lit contains only 6 bits
     i = 2
+    Base64Str = ""
     while i < len(BinaryLit):
         pattern = BinaryLit[i:i + 6]
-
+        Base64Str += Base64Index[int(pattern, 2)]
         i += 6
 
-    Base64Str = "placeholder"
     return Base64Str
 
 def hex_to_64 (HexStr):
