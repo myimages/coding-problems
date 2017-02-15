@@ -1,11 +1,10 @@
 import base64
-import binascii
 
 def hex_to_bin(HexStr):
     """
     Converts a hex string into a binary literal
     """
-    return binascii.unhexlify(HexStr)
+    return base64.b16decode(HexStr, casefold = True)
 
 def bin_to_64(BinaryLit):
 
@@ -17,7 +16,7 @@ def hex_to_64 (HexStr):
     Convert a hex string to a base64 string.
     """
     BinaryLit  = hex_to_bin(HexStr)
-    print(BinaryLit[0])
+    print(BinaryLit)
     Base64Str = bin_to_64(BinaryLit)
     return Base64Str
 
