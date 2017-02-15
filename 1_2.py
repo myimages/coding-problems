@@ -4,9 +4,9 @@ def fixed_XOR(Hex1, Hex2):
 
     BinXOR= Bin1^Bin2
     HexXOR = hex(BinXOR)
-    print(HexXOR)
+    return HexXOR
 
 Hex1 = "1c0111001f010100061a024b53535009181c"
 Hex2 = "686974207468652062756c6c277320657965"
 
-fixed_XOR(Hex1, Hex2)
+print(fixed_XOR(Hex1, Hex2))
