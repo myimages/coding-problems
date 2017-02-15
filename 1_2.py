@@ -1,5 +1,3 @@
-import base64
-
 def fixed_XOR(Hex1, Hex2):
     Bin1= int(Hex1, 16)
     Bin2 = int(Hex2, 16)
