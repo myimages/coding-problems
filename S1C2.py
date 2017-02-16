@@ -6,7 +6,10 @@ def fixed_XOR(Hex1, Hex2):
     HexXOR = hex(BinXOR)
     return HexXOR
 
-Hex1 = "1c0111001f010100061a024b53535009181c"
-Hex2 = "686974207468652062756c6c277320657965"
+"""
+Testing
+"""
+#Hex1 = "1c0111001f010100061a024b53535009181c"
+#Hex2 = "686974207468652062756c6c277320657965"
 
-print(fixed_XOR(Hex1, Hex2))
+#print(fixed_XOR(Hex1, Hex2))
