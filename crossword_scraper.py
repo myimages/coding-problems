@@ -2,13 +2,10 @@
 Data from: http://www.nytcrossword.com/
 Scrapes the site for crossword puzzles.
 """
-# Learn about virtualenv
-# Switch to lxml
+# We're going to learn about these
 import requests
-from bs4 import BeautifulSoup
-# lxml - wrapper around beautifulsoup
-# You have to instantiate the etree - models the DOM
-# That model allows you to traverse the DOM
+import lxml
+
 
 # CURRENTLY WORKING ON
 def crawl_website(url):
