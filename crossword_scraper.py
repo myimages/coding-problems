@@ -15,14 +15,31 @@ def crawl_website(Url):
     """
     Page = requests.get(Url)
     # Turns the webpage into an Element Tree
-    Tree = html.fromstring(Page.content)
-    f = open("nytcrossword.txt", "wb")
-    f.write(etree.tostring(Tree, encoding = "UTF-8", pretty_print=True))
-    return Tree
+    DOMTree = html.fromstring(Page.content)
+    # Should I do this, or just return the tree?
+    # I WORKED SO HARD....
+    # Just return the tree.
+    return DOMTree
 
-def scrape_nytcrossword(f):
+def scrape_nytcrossword(DOMTree):
     """
     Process the data from a website offline
     """
-    return 0
+
+    # We can use this to read the crossword solutions
+    DOMList = DOMTree.xpath("//text ()")
+    iAcross = [i for i, j in enumerate(DOMList) if j == "Across"]
+    iDown = [i for i, j in enumerate(DOMList) if j == "Down"]
+    Clues = []
+    for element in DOMList[iAcross[1]+1:iDown[1]]:
+        element = element.strip()
+        if element:
+            Clues.append(element)
+    for element in DOMList[iDown[1]:]:
+        element = element.strip()
+        if element:
+            Clues.append(element)
+        else:
+            break
+    print(Clues)
 
