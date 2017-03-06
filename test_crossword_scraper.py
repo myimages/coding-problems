@@ -7,11 +7,9 @@ import crossword_scraper
 import vcr
 from lxml import html, etree
 
-
-# Let's get this test to work.
 @vcr.use_cassette("fixtures/vcr_cassettes/nytcrossword.yaml")
-def test_crawler_on_nytcrossword():
+def test_crawler_read_one_page_nytcrossword():
     response = crossword_scraper.crawl_website("http://www.nytcrossword.com/")
-    print(etree.tostring(response[0]))
+    assert etree.iselement(response)
+    assert len(response) > 0
 
-test_crawler_on_nytcrossword()
