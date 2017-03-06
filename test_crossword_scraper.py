@@ -14,5 +14,7 @@ def test_crawler_read_one_page_nytcrossword():
     response = crossword_scraper.crawl_website("http://www.nytcrossword.com/")
     assert etree.iselement(response)
     assert len(response) > 0
+    # Extracts the text content of a tree into a list.
+    assert "Across" in response.xpath("//text ()")
 
 test_crawler_read_one_page_nytcrossword()
