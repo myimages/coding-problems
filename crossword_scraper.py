@@ -10,12 +10,14 @@ from lxml import html, etree
 # CURRENTLY WORKING ON
 def crawl_website(Url):
     """
-    Reads a page from a url and then prints it to a file
+    Reads a page from a url and then prints it to a file for scraping
     GOAL: Will read a series of pages defined by another variable. For now, let's just read one page.
     """
     Page = requests.get(Url)
+    # Turns the webpage into an Element Tree
     Tree = html.fromstring(Page.content)
-
+    f = open("nytcrossword.txt", "wb")
+    f.write(etree.tostring(Tree, encoding = "UTF-8", pretty_print=True))
     return Tree
 
 def scrape_nytcrossword(f):

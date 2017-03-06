@@ -9,7 +9,10 @@ from lxml import html, etree
 
 @vcr.use_cassette("fixtures/vcr_cassettes/nytcrossword.yaml")
 def test_crawler_read_one_page_nytcrossword():
+    # Tests if crossword_scraper's crawl has returned an element tree.
+    # TODO: Test for contents of element tree.
     response = crossword_scraper.crawl_website("http://www.nytcrossword.com/")
     assert etree.iselement(response)
     assert len(response) > 0
 
+test_crawler_read_one_page_nytcrossword()
