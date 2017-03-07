@@ -1,19 +1,17 @@
-"""
-Data from: http://www.nytcrossword.com/
-Scrapes the site for crossword puzzles.
-"""
-# We're going to learn about these
 import requests
 from lxml import html, etree
 
 
 def crawl_website(url):
     """
-    Reads one page from a url and then returns the DOMTree
-    PARAMETERS
-    url: String, a url representing a website that we wish to crawl
-    RETURNS
-    DOMTree: An Element Tree created using the html module from the lxml library
+    Converts a web page into an Element Tree.
+
+    Args:
+        url: A string which represents a website that we wish to crawl.
+
+    Returns:
+        DOM_tree: An Element Tree created using the html module from the lxml
+                  library.
     """
     # Need to add some error handling here. I don't want it to crash if the url is not valid
     page = requests.get(url)
@@ -21,11 +19,16 @@ def crawl_website(url):
     return DOM_tree
 
 def etree_to_file(DOM_tree):
-    return
+    """
+    Writes an element tree to a file.
+
+    """
+    return None
 
 def scrape_nytcrossword(DOM_tree):
     """
-    Process the data from the nyt website for clue:answer pairs
+    Process the data from the nyt website for clue:answer pairs.
+
     """
 
     # We can use this to read the crossword solutions
