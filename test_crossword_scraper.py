@@ -8,7 +8,7 @@ import vcr
 from lxml import html, etree
 
 @vcr.use_cassette("fixtures/vcr_cassettes/nytcrossword.yaml")
-def test_crawler_read_one_page_nytcrossword():
+def test_crawler_works_on_nytcrossword():
     # Tests if crossword_scraper's crawl has returned an element tree.
     # TODO: Test for contents of element tree.
     response = crossword_scraper.crawl_website("http://www.nytcrossword.com/")
@@ -18,4 +18,6 @@ def test_crawler_read_one_page_nytcrossword():
     assert "Across" in response.xpath("//text ()")
     crossword_scraper.scrape_nytcrossword(response)
 
-test_crawler_read_one_page_nytcrossword()
+def test_scraper_on_nytcrossword():
+    # How would I make this independent? I'd have to read the file and turn it into an element tree. The thing I dreaded doing. Sigh.
+    return

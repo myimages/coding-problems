@@ -7,23 +7,24 @@ import requests
 from lxml import html, etree
 
 
-# CURRENTLY WORKING ON
 def crawl_website(Url):
     """
-    Reads a page from a url and then prints it to a file for scraping
-    GOAL: Will read a series of pages defined by another variable. For now, let's just read one page.
+    Reads one page from a url and then returns the DOMTree
+    PARAMETERS
+    Url: String, a url representing a website that we wish to crawl
+    RETURNS
+    DOMTree: An Element Tree created using the html module from the lxml library
     """
     Page = requests.get(Url)
-    # Turns the webpage into an Element Tree
     DOMTree = html.fromstring(Page.content)
-    # Should I do this, or just return the tree?
-    # I WORKED SO HARD....
-    # Just return the tree.
     return DOMTree
+
+def etree_to_file(DOMTree):
+    return
 
 def scrape_nytcrossword(DOMTree):
     """
-    Process the data from a website offline
+    Process the data from the nyt website for clue:answer pairs
     """
 
     # We can use this to read the crossword solutions
