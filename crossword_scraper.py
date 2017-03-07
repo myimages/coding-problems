@@ -35,14 +35,14 @@ def crawl_website(url, error_file_loc = "errors.txt"):
 def etree_to_file(DOM_tree):
     """
     Writes an element tree to a file.
-
     """
     return None
 
 def scrape_nytcrossword(DOM_tree):
     """
     Process the data from the nyt website for clue:answer pairs.
-
+    # TODO
+    # DOCUMENTATION
     """
 
     # We can use this to read the crossword solutions

@@ -32,6 +32,10 @@ def test_crawler_error_handling():
 
 @vcr.use_cassette("fixtures/vcr_cassettes/nytcrossword_invalid.yaml")
 def test_scraper_on_invalid_page():
+    """
+    Tests that our scraper correctly processes invalid nytcrossword pages.
+    """
+
     response = crossword_scraper.crawl_website("http://www.nytcrossword.com/page/1")
     scrape = crossword_scraper.scrape_nytcrossword(response)
     assert scrape == None
