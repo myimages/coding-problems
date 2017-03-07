@@ -11,10 +11,20 @@ def crawl_website(url):
 
     Returns:
         DOM_tree: An Element Tree created using the html module from the lxml
-                  library.
+                  library. Contains None if url was not valid.
+
+    Raises:
+        RequestException: An error occurred trying to request the web page.
     """
     # Need to add some error handling here. I don't want it to crash if the url is not valid
-    page = requests.get(url)
+    try:
+        page = requests.get(url)
+    except requests.exceptions.RequestException as e:
+        f = open("errors.txt", w)
+        f.write(str(e))
+        f.close()
+        print("%s was not a valid url." % url)
+        return None
     DOM_tree = html.fromstring(page.content)
     return DOM_tree
 
