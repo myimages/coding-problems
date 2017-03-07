@@ -1,12 +1,13 @@
 import requests
 from lxml import html, etree
 
-def crawl_website(url, error_file = "errors.txt"):
+def crawl_website(url, error_file_loc = "errors.txt"):
     """
     Converts a web page into an Element Tree.
 
     Args:
         url: A string which represents a website that we wish to crawl.
+        TODO error_file
 
     Returns:
         DOM_tree: An Element Tree created using the html module from the lxml
@@ -15,17 +16,16 @@ def crawl_website(url, error_file = "errors.txt"):
     Raises:
         RequestException: An error occurred trying to request the web page.
     """
-    # TODO: Check for invalid nyt pages " Sorry, the page you were looking for in this blog does not exist. "
     # Check for invalid requests
 
     try:
         page = requests.get(url)
     except requests.exceptions.RequestException as e:
-        f = open(error_file, "a")
-        f.write("%s was not a valid url." % url)
-        f.write(str(e))
-        f.close()
-        print("%s was not a valid url." % url)
+        error_file = open(error_file_loc, "a")
+        error_file.write("%s was not a valid url. " % url)
+        error_file.write(str(e) + "\n")
+        error_file.close()
+        print("%s was not a valid url. \n" % url)
         return None
 
     DOM_tree = html.fromstring(page.content)
