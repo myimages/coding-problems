@@ -1,8 +1,7 @@
 import requests
 from lxml import html, etree
 
-
-def crawl_website(url):
+def crawl_website(url, error_file = "errors.txt"):
     """
     Converts a web page into an Element Tree.
 
@@ -16,15 +15,19 @@ def crawl_website(url):
     Raises:
         RequestException: An error occurred trying to request the web page.
     """
-    # Need to add some error handling here. I don't want it to crash if the url is not valid
+    # TODO: Check for invalid nyt pages " Sorry, the page you were looking for in this blog does not exist. "
+    # Check for invalid requests
+
     try:
         page = requests.get(url)
     except requests.exceptions.RequestException as e:
-        f = open("errors.txt", w)
+        f = open(error_file, "a")
+        f.write("%s was not a valid url." % url)
         f.write(str(e))
         f.close()
         print("%s was not a valid url." % url)
         return None
+
     DOM_tree = html.fromstring(page.content)
     return DOM_tree
 
@@ -43,6 +46,10 @@ def scrape_nytcrossword(DOM_tree):
 
     # We can use this to read the crossword solutions
     DOM_list = DOM_tree.xpath("//text ()")
+    if "\nSorry, the page you were looking for in this blog does not exist.\n" in DOM_list:
+        print("Page did not exist.")
+        return None
+
     i_across = [i for i, j in enumerate(DOM_list) if j == "Across"]
     i_down = [i for i, j in enumerate(DOM_list) if j == "Down"]
     clues = []
