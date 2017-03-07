@@ -5,6 +5,27 @@ Scrapes the site for crossword puzzles.
 # We're going to learn about these
 import requests
 from lxml import html, etree
+import re
+
+# BEGIN Code copied from the Django project
+def is_valid_url(Url):
+    """
+    Checks that a url is a valid url
+    PARAMETERS
+    Url: String
+    RETURNS
+    Boolean: True if Url is a valid url, False otherwise.
+    """
+    Regex = re.compile(
+    # http:// or https://
+        r'^https?://'
+        r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+[A-Z]{2,6}\.?|'  # domain...
+        r'localhost|'  # localhost...
+        r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})' # ...or ip
+        r'(?::\d+)?'  # optional port
+        r'(?:/?|[/?]\S+)$', re.IGNORECASE)
+    return Url is not None and Regex.search(Url)
+# END code copied from the Django project
 
 
 def crawl_website(Url):
@@ -15,6 +36,7 @@ def crawl_website(Url):
     RETURNS
     DOMTree: An Element Tree created using the html module from the lxml library
     """
+    assert is_valid_url(Url)
     Page = requests.get(Url)
     DOMTree = html.fromstring(Page.content)
     return DOMTree
