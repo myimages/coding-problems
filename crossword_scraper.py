@@ -7,7 +7,8 @@ def crawl_website(url, error_file_loc = "errors.txt"):
 
     Args:
         url: A string which represents a website that we wish to crawl.
-        TODO error_file
+        error_file_loc: The name of the file where error reports will be
+                        recorded.
 
     Returns:
         DOM_tree: An Element Tree created using the html module from the lxml
@@ -16,8 +17,8 @@ def crawl_website(url, error_file_loc = "errors.txt"):
     Raises:
         RequestException: An error occurred trying to request the web page.
     """
-    # Check for invalid requests
 
+    # Check for invalid requests
     try:
         page = requests.get(url)
     except requests.exceptions.RequestException as e:
