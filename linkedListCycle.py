@@ -2,7 +2,7 @@
 
 def has_cycle(head):
     """
-    Detects a cycle in a linked list.
+    Detects whether there is a cycle in a linked list.
 
     Args:
         head: A pointer to the head node of a linkedlist. Contains 'None' if the list is empty.
@@ -17,5 +17,9 @@ def has_cycle(head):
     """
 
     # We specify that an empty list won't have a cycle.
+    if head is None:
+        return False
+
+
     pass
 
