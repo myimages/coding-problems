@@ -1,10 +1,33 @@
+class Node(object):
+    """
+    Node object which is being used to test the functions.
+
+    Delete before submitting.
+
+     Args:
+        data (:anything): Data which is contained in the LinkedList node.
+        next_node (:obj type Node): Pointer to the subsequent node in the linkedList.
+
+    Attributes:
+        data (:anything): Data which is contained in the LinkedList node.
+        next_node (:obj type Node): Pointer to the subsequent node in the linkedList.
+
+    """
+    def __init__(self, data = None, next_node = None):
+        self.data = data
+        self.next = next_node
+    def set_next(self, new_next):
+        self.next_node = new_next
+    def insert(self, data):
+        new_node = Node(data)
+        self.set_next(new_node)
 
 def has_cycle(head):
     """
     Detects whether there is a cycle in a linked list.
 
     Args:
-        head: A pointer to the head node of a linkedlist. Contains 'None' if the list is empty.
+        head (:obj type Node): A pointer to the head Node of a linkedlist. Contains 'None' if the list is empty.
             A Node is defined as:
 
                 class Node(object):
@@ -12,7 +35,7 @@ def has_cycle(head):
                         self.data = data
                         self.next = next_node
     Returns:
-        cycle: A boolean which contains a True if the linkedlist contains a cycle and a False otherwise.
+        cycle (:boolean): Contains a True if the linkedlist contains a cycle and a False otherwise.
     """
 
     # We specify that an empty list won't have a cycle.
