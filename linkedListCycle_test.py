@@ -6,6 +6,18 @@ Test suite for linkedListCycle.py
 import linkedListCycle
 import pytest
 import hypothesis
+from unittest import mock
+
+# Class Node for testing
+class Node(object):
+    def __init__(self, data = None, next_node = None):
+        self.data = data
+        self.next = next_node
+    def set_next(self, new_next):
+        self.next_node = new_next
+    def insert(self, data):
+        new_node = Node(data)
+        self.set_next(new_node)
 
 # Specification: An empty list does not contain a cycle.
 def test_empty_list():

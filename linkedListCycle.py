@@ -1,5 +1,4 @@
 
-
 def has_cycle(head):
     """
     Detects whether there is a cycle in a linked list.
@@ -20,6 +19,7 @@ def has_cycle(head):
     if head is None:
         return False
 
+    assert isinstance(head, Node)
 
     pass
 
