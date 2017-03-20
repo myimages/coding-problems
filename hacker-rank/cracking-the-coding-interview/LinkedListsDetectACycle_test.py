@@ -3,10 +3,21 @@ Test suite for 04LinkedListsDetectACycle.py
 """
 
 # TODO: Once I figure out which modules I will use, replace the import statements with from statements.
-import linkedListCycle
+import LinkedListsDetectACycle as lldal
+from LinkedListsDetectACycle import Node
 import pytest
 import hypothesis
 from unittest import mock
+
+# Constructs a linked list from a list of data
+def make_linked_list(ls):
+    if not ls:
+        head = Node(data=None)
+        return head
+
+
+    for data in ls:
+
 
 # Specification: An empty list does not contain a cycle.
 def test_empty_list():
@@ -17,5 +28,8 @@ def test_incorrect_input():
         with pytest.raises(AssertionError):
             linkedListCycle.has_cycle(head=1)
 
-# Mock objects : D
+def test_one_element():
+
+    assert linkedListCycle.has_cycle(head=head)
+
 
