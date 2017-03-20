@@ -1,5 +1,5 @@
 """
-Test suite for linkedListCycle.py
+Test suite for 04LinkedListsDetectACycle.py
 """
 
 # TODO: Once I figure out which modules I will use, replace the import statements with from statements.
