@@ -19,3 +19,7 @@ class TestListZeros(unittest.TestCase):
         self.assertEqual(push_zeros([1, 1, 1]), [1, 1, 1])
         self.assertEqual(push_zeros([0, 1, 2]), [1, 2, 0])
         self.assertEqual(push_zeros([1, 0, 2]), [1, 2, 0])
+        self.assertEqual(push_zeros([0, 0, 1]), [1, 0, 0])
+
+    def test_list_four_elements(self):
+        self.assertEqual(push_zeros([0, 1, 0, 2]), [1, 2, 0, 0])
