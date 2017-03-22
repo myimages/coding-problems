@@ -16,19 +16,13 @@ class Node(object):
     def __init__(self, data = None, next_node = None):
         self.data = data
         self.next = next_node
-    def set_next(self, new_next):
-        self.next_node = new_next
-    def insert(self, data):
-        new_node = Node(data)
-        self.set_next(new_node)
+
     def __str__(self):
-        in_line = True
-        while in_line:
-            print("Node " + str(data) + ", ")
-            if next_node is None:
-                in_line = False
-            else:
-                # I am going to have to create a linked list object aren't I?
+        return str(self.data)
+
+    def set_next(self, new_next):
+        self.next = new_next
+
 
 
 def has_cycle(head):
