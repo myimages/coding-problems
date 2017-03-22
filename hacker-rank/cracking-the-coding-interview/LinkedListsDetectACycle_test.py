@@ -3,8 +3,7 @@ Test suite for 04LinkedListsDetectACycle.py
 """
 
 # TODO: Once I figure out which modules I will use, replace the import statements with from statements.
-import LinkedListsDetectACycle as lldal
-from LinkedListsDetectACycle import Node
+from LinkedListsDetectACycle import Node, has_cycle
 import pytest
 import hypothesis
 
@@ -48,16 +47,16 @@ def print_linked_list(node):
 
 # Specification: An empty list does not contain a cycle.
 def test_empty_list():
-    assert linkedListCycle.has_cycle(head=None) == False
+    assert has_cycle(head=None) == False
 
 # Test that if the input is not a Node or None, the program does not run.
 def test_incorrect_input():
         with pytest.raises(AssertionError):
-            linkedListCycle.has_cycle(head=1)
+            has_cycle(head=1)
 
 def test_one_element():
 
-    assert linkedListCycle.has_cycle(head=head)
+    assert has_cycle(head=head)
 
 def test_make_linked_list():
     assert print_linked_list(make_linked_list([1])) == "Node: 1; "
