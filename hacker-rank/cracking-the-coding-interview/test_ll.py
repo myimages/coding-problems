@@ -44,10 +44,10 @@ def make_linked_list(ls):
         head = Node(data=ls[0])
     else:
         head = Node(data=ls[0])
-        head.insert(ls[1])
+        head.set_next(Node(ls[1]))
         node = head.next
         for i in range(2, len(ls)):
-            node.insert(ls[i])
+            node.set_next(Node(ls[i]))
             node = node.next
     return head
 
@@ -68,6 +68,7 @@ def print_linked_list(node):
 def test_make_linked_list():
     assert print_linked_list(make_linked_list([1])) == "Node: 1; "
     assert print_linked_list(make_linked_list([1, 2])) == "Node: 1; Node: 2; "
+    assert print_linked_list(make_linked_list(["1", "2", "3"])) == "Node: 1; Node: 2; Node: 3; "
 
 def test_print_linked_list():
     head = Node(data=1)
