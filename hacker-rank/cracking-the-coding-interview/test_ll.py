@@ -24,11 +24,7 @@ class Node(object):
         return str(self.data)
 
     def set_next(self, new_next):
-        self.next_node = new_next
-
-    def insert(self, data):
-        new_node = Node(data)
-        self.set_next(new_node)
+        self.next = new_next
 
 ######################################################################
 
@@ -62,11 +58,19 @@ def print_linked_list(node):
     Args:
         node (:obj Node): The head node of the linked list.
     """
+    ll = ""
     while node is not None:
-        print("Node: " + str(node.data) + "; ")
+        ll += "Node: " + str(node.data) + "; "
         node = node.next
-
+    return ll
 ######################3
 
-def test_tests():
-    pass
+def test_make_linked_list():
+    assert print_linked_list(make_linked_list([1])) == "Node: 1; "
+    assert print_linked_list(make_linked_list([1, 2])) == "Node: 1; Node: 2; "
+
+def test_print_linked_list():
+    head = Node(data=1)
+    head.set_next(Node(data=2))
+    head.next.set_next(Node(data=3))
+    assert print_linked_list(head) == "Node: 1; Node: 2; Node: 3; "
