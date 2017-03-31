@@ -6,14 +6,16 @@ def making_change(value):
     Returns:
         change(:dictionary): The number of each coin which results in the fewest number of total coins being used to equal the value.
     """
-    pass
+    Canadian_coins = (100, 25, 10, 5, 1)
+    change = {1.00:0, 0.25:0, 0.1:0, 0.05:0, 0.01:0}
+    value *= 100
+    while value != 0:
+        for coin in Canadian_coins:
+            if value - coin >= 0:
+                change[coin/100] += 1
+                value -= coin
+                print(value)
+                break
+    return change
 
-def total_monetary_value(coins):
-    """
-    Evaluates the total monetary value of a collection of coins.
-    Args:
-        coins(:dictionary): A dictionary which has a coin's value as a key followed by the total number of those coins of that value.
-    Returns:
-        value(:float): The total monetary coin value of the coin collection.
-    """
-    pass
+print(making_change(2.35))
