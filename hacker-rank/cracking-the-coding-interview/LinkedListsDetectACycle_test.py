@@ -55,8 +55,8 @@ def test_incorrect_input():
             has_cycle(head=1)
 
 def test_one_element():
-
-    assert has_cycle(head=head)
+    head = make_linked_list([1])
+    assert has_cycle(head=head) == False
 
 def test_make_linked_list():
     assert print_linked_list(make_linked_list([1])) == "Node: 1; "
