@@ -12,11 +12,15 @@ from hypothesis import strategies as st
 
 # End-to-end testing of heapsort
 # TODO: Rewrite this so I can test heapsort without using sorted()
-@given(st.lists(elements = st.integers(), min_size = 1, average_size = 100, unique = True), settings=settings(verbosity=Verbosity.verbose))
-def test_entire_heapsort(ls):
+@given(st.lists(elements = st.integers(), min_size = 1, average_size = 100, unique = True))
+def test_first_element_is_the_smallest(ls):
     ls = heapsort.hs(ls)
-    for e1, e2 in zip(ls[:-1], ls[1:]):
-        assert e1 <= e2
+    first = ls[0]
+    pass
+
+def test_empty_list():
+    ls = []
+    assert heapsort.hs(ls) == []
 
 # Tests switch with correct inputs: Inputs a list of elements and two valid indices into the list
 @st.composite
