@@ -12,9 +12,11 @@ from hypothesis import strategies as st
 
 # End-to-end testing of heapsort
 # TODO: Rewrite this so I can test heapsort without using sorted()
-@given(st.lists(elements = st.integers(), min_size = 1, average_size = 100, unique = True))
+@given(st.lists(elements = st.integers(), min_size = 1, average_size = 100, unique = True), settings=settings(verbosity=Verbosity.verbose))
 def test_entire_heapsort(ls):
-    assert heapsort.hs(ls) == sorted(ls)
+    ls = heapsort.hs(ls)
+    for e1, e2 in zip(ls[:-1], ls[1:]):
+        assert e1 <= e2
 
 # Tests switch with correct inputs: Inputs a list of elements and two valid indices into the list
 @st.composite
