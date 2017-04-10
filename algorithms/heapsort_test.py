@@ -24,6 +24,15 @@ def test_sort_last_element_is_the_largest(ls):
     for i in range(0, len(ls)-1):
         assert last >= ls[i]
 
+@given(ls=st.lists(elements = st.integers(), min_size = 1, average_size = 100, unique = True))
+def test_sort_output_has_the_same_number_of_elements(ls):
+    ls_out = heapsort.hs(ls)
+    assert len(ls_out) == len(ls)
+
+@given(ls=st.lists(elements = st.integers(), min_size = 1, average_size = 100, unique = True))
+def test_sort_same_elements_out_as_put_in(ls):
+    pass
+
 def test_empty_list():
     ls = []
     assert heapsort.hs(ls) == []
