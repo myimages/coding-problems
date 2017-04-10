@@ -10,12 +10,19 @@ from hypothesis import strategies as st
   #  for e1, e2 in zip(ls[:-1],ls[1:]):
    #     assert e1 <= e2
 
-@given(st.lists(elements = st.integers(), min_size = 1, average_size = 100, unique = True))
-def test_first_element_is_the_smallest(ls):
+@given(ls=st.lists(elements = st.integers(), min_size = 1, average_size = 100, unique = True))
+def test_sort_first_element_is_the_smallest(ls):
     ls = heapsort.hs(ls)
     first = ls[0]
     for i in range(1, len(ls)):
         assert first <= ls[i]
+
+@given(ls=st.lists(elements = st.integers(), min_size = 1, average_size = 100, unique = True))
+def test_sort_last_element_is_the_largest(ls):
+    ls = heapsort.hs(ls)
+    last = ls[-1]
+    for i in range(0, len(ls)-1):
+        assert last >= ls[i]
 
 def test_empty_list():
     ls = []
