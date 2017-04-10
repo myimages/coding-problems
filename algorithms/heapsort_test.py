@@ -2,6 +2,7 @@ import heapsort
 import pytest
 from hypothesis import given, reject, settings,  Verbosity
 from hypothesis import strategies as st
+from collections import Counter
 
 #Elias' cool way of testing heapsort
 #@given(st.lists(st.integers()))
@@ -31,7 +32,8 @@ def test_sort_output_has_the_same_number_of_elements(ls):
 
 @given(ls=st.lists(elements = st.integers(), min_size = 1, average_size = 100, unique = True))
 def test_sort_same_elements_out_as_put_in(ls):
-    pass
+    ls_out = heapsort.hs(ls)
+    assert Counter(ls_out) == Counter(ls)
 
 def test_empty_list():
     ls = []
