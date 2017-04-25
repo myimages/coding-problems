@@ -1,6 +1,6 @@
 P=hello_world
 OBJECTS=
-CFLAGS = -Wall
+CFLAGS = -g -Wall
 LDLIBS=
 CC=c99
 
