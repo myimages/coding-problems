@@ -1,6 +1,10 @@
 #include <stdio.h>
 
+int add_together(int x, int y) {
+	int result = x + y;
+	return result;
+}
+
 int main(int argc, char** argv) {
-	printf("Hello, Kefala.\n");
-	return 0;
+	int added = add_together(10, 18);
 }
